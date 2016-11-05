@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--iQuiz-->
         <scene sceneID="Tl9-b3-cp3">
             <objects>
                 <tableViewController id="Aac-pH-5nJ" customClass="iQuizTableViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                             <outlet property="delegate" destination="Aac-pH-5nJ" id="3qu-Ip-fCw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="WED-Pc-TIP">
+                    <navigationItem key="navigationItem" title="iQuiz" id="WED-Pc-TIP">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Jaj-3c-qSc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fjP-TI-ZZ1">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
