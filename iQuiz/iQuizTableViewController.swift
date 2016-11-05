@@ -12,6 +12,7 @@ class iQuizTableViewController: UITableViewController {
     
     var questionCategories = ["Mathematics", "Marvel Super Heroes", "Science"]
     var categoryDescriptions = ["Questions realted to math. Duh.", "Everything about Marvel Super Heroes.", "SCIIIIIENCCE!"]
+    var imageList = ["math", "marvel", "chemistry"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +40,18 @@ class iQuizTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "iQuizCell", for: indexPath) as! iQuizTableViewCell
         cell.questionLabel.text = questionCategories[indexPath.row]
         cell.descriptionLabel.text = categoryDescriptions[indexPath.row]
+        cell.categoryImage.image = UIImage(named : imageList[indexPath.row])
         // Configure the cell...
 
         return cell
     }
 
+    @IBAction func settingsAlert(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Settings go here", message: "Yay settings!", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

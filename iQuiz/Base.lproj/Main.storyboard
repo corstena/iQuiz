@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hD2-OM-rJ7" id="NpN-76-PTv">
-                                    <frame key="frameInset" width="375" height="64"/>
+                                    <frame key="frameInset" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-VS-KrO">
@@ -36,9 +36,14 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="alW-fC-0IZ">
+                                            <frame key="frameInset" minX="8" width="58" height="58"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="categoryImage" destination="alW-fC-0IZ" id="0le-e4-us1"/>
                                     <outlet property="descriptionLabel" destination="FqR-qU-qbH" id="uzX-QG-hKy"/>
                                     <outlet property="questionLabel" destination="B7Y-VS-KrO" id="yVS-Gx-jYG"/>
                                 </connections>
@@ -49,7 +54,21 @@
                             <outlet property="delegate" destination="Aac-pH-5nJ" id="3qu-Ip-fCw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="WED-Pc-TIP"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="WED-Pc-TIP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Jaj-3c-qSc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fjP-TI-ZZ1">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <action selector="settingsAlert:" destination="Aac-pH-5nJ" eventType="touchUpInside" id="PCh-Jb-bbm"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="settingsAlert:" destination="Aac-pH-5nJ" id="wLn-Zt-kiV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAe-5U-bww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

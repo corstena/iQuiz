@@ -12,6 +12,7 @@ class iQuizTableViewCell: UITableViewCell {
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
