@@ -46,7 +46,7 @@
                                     <outlet property="categoryImage" destination="alW-fC-0IZ" id="0le-e4-us1"/>
                                     <outlet property="descriptionLabel" destination="FqR-qU-qbH" id="uzX-QG-hKy"/>
                                     <outlet property="questionLabel" destination="B7Y-VS-KrO" id="yVS-Gx-jYG"/>
-                                    <segue destination="4HE-hA-sUL" kind="presentation" trigger="accessoryAction" id="eOM-t7-I8Y"/>
+                                    <segue destination="4HE-hA-sUL" kind="presentation" identifier="goToQuestion" id="dzZ-0I-6As"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -105,14 +105,20 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectedAnswer:" destination="4HE-hA-sUL" eventType="touchUpInside" id="N5V-2h-eQx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8r6-0C-YbY">
-                                <frame key="frameInset" minX="4.27%" minY="58.77%" width="91.47%" height="7.35%"/>
+                                <frame key="frameInset" minX="4.27%" minY="58.62%" width="91.47%" height="7.50%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.37242752979999999" green="0.37013749429999998" blue="0.3761536593" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectedAnswer:" destination="4HE-hA-sUL" eventType="touchUpInside" id="UZq-FK-HFC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY2-yb-4cs">
                                 <frame key="frameInset" minX="4.27%" minY="67.32%" width="91.47%" height="7.35%"/>
@@ -121,17 +127,20 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectedAnswer:" destination="4HE-hA-sUL" eventType="touchUpInside" id="kxS-5y-Tqm"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL3-YJ-IFs">
-                                <frame key="frameInset" minX="4.27%" minY="11.09%" width="91.47%" height="26.84%"/>
+                                <frame key="frameInset" minX="4.27%" minY="10.95%" width="91.47%" height="26.84%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Dn-N2-PDH">
-                                <frame key="frameInset" minY="0.0%" width="100.00%" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="Bql-EM-y3I">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="MTd-ua-GkT">
@@ -141,7 +150,7 @@
                                                 <state key="normal" title="Back"/>
                                             </button>
                                             <connections>
-                                                <segue destination="Aac-pH-5nJ" kind="presentation" id="1w3-dL-fjZ"/>
+                                                <segue destination="Aac-pH-5nJ" kind="presentation" id="N3U-1I-coK"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="tao-UQ-QEX">
@@ -149,10 +158,13 @@
                                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Next"/>
+                                                <connections>
+                                                    <action selector="nextButton:" destination="4HE-hA-sUL" eventType="touchUpInside" id="3bR-ra-YE2"/>
+                                                </connections>
                                             </button>
                                             <connections>
                                                 <action selector="nextButton:" destination="4HE-hA-sUL" id="Dtp-Dn-NHL"/>
-                                                <segue destination="XjV-Om-YNY" kind="presentation" id="YTZ-DU-wJT"/>
+                                                <segue destination="XjV-Om-YNY" kind="presentation" identifier="goToAnswer" id="YTZ-DU-wJT"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -192,7 +204,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0F-EA-RxJ">
-                                <frame key="frameInset" minX="4.27%" minY="64.02%" width="91.47%" height="13.64%"/>
+                                <frame key="frameInset" minX="4.27%" minY="64.02%" width="91.47%" height="13.49%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -224,7 +236,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tic-vx-4cd">
-                                <frame key="frameInset" minX="4.27%" minY="16.34%" width="91.47%" height="10.79%"/>
+                                <frame key="frameInset" minX="4.27%" minY="16.19%" width="91.47%" height="10.79%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -251,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-Ah-tjI">
-                                <frame key="frameInset" minY="0.0%" width="100.00%" height="44"/>
+                                <frame key="frameInset" minY="100.00%" width="100.00%" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="d2I-GG-HCL">
@@ -276,7 +288,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descriptive Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVz-cY-pLZ">
-                                <frame key="frameInset" minX="4.27%" minY="29.68%" width="91.47%" height="11.84%"/>
+                                <frame key="frameInset" minX="4.27%" minY="29.54%" width="91.47%" height="11.84%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -315,6 +327,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7qn-dK-XgN"/>
+        <segue reference="N3U-1I-coK"/>
     </inferredMetricsTieBreakers>
 </document>

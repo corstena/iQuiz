@@ -19,11 +19,13 @@ class QuestionScreenViewController: UIViewController {
     @IBAction func selectedAnswer(_ sender: UIButton) {
         clearSelected()
         sender.backgroundColor = UIColor.green
+        sender.setTitleColor(UIColor.black, for: UIControlState.normal)
         answerSelected = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        answerSelected = false
         // Do any additional setup after loading the view.
     }
 
@@ -37,14 +39,17 @@ class QuestionScreenViewController: UIViewController {
         option2.backgroundColor = UIColor.gray
         option3.backgroundColor = UIColor.gray
         option4.backgroundColor = UIColor.gray
+        option1.setTitleColor(UIColor.white, for: UIControlState.normal)
+        option2.setTitleColor(UIColor.white, for: UIControlState.normal)
+        option3.setTitleColor(UIColor.white, for: UIControlState.normal)
+        option4.setTitleColor(UIColor.white, for: UIControlState.normal)
     }
     
-    @IBAction func nextButton(_ sender: UIBarButtonItem) {
+    @IBAction func nextButton(_ sender: UIButton) {
         if(answerSelected) {
-            //move to next screen
+            performSegue(withIdentifier: "goToAnswer", sender: self)
         }
     }
-
 
     /*
     // MARK: - Navigation
