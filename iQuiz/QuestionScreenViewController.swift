@@ -44,13 +44,18 @@ class QuestionScreenViewController: UIViewController {
         option3.setTitleColor(UIColor.white, for: UIControlState.normal)
         option4.setTitleColor(UIColor.white, for: UIControlState.normal)
     }
-    
-    @IBAction func nextButton(_ sender: UIButton) {
+
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if(answerSelected) {
             performSegue(withIdentifier: "goToAnswer", sender: self)
         }
     }
+    
+    @IBAction func goBackToHome(_ sender: UIButton) {
+         performSegue(withIdentifier: "questionToHome", sender: self)
+    }
 
+    
     /*
     // MARK: - Navigation
 

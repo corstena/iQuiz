@@ -32,4 +32,7 @@ class ResultsScreenViewController: UIViewController {
     }
     */
 
+    @IBAction func resultsToHome(_ sender: AnyObject) {
+        performSegue(withIdentifier: "resultsToHome", sender: self)
+    }
 }

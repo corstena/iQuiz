@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="iQuizCell" rowHeight="65" id="hD2-OM-rJ7" customClass="iQuizTableViewCell" customModule="iQuiz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hD2-OM-rJ7" id="NpN-76-PTv">
                                     <frame key="frameInset" width="375" height="65"/>
@@ -73,7 +73,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAe-5U-bww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248.80000000000001" y="103.89805097451276"/>
+            <point key="canvasLocation" x="263" y="104"/>
         </scene>
         <!--Question Screen View Controller-->
         <scene sceneID="wZC-K6-UfG">
@@ -139,32 +139,36 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Dn-N2-PDH">
-                                <frame key="frameInset" height="44"/>
+                                <frame key="frameInset" minY="20" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="Bql-EM-y3I">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="MTd-ua-GkT">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eRF-xZ-hUz">
+                                    <navigationItem title="Question" id="Bql-EM-y3I">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="GhY-Ob-EPM">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i0C-jI-j8M">
                                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="goBackToHome:" destination="4HE-hA-sUL" eventType="touchUpInside" id="cBT-Rr-5Bm"/>
+                                                </connections>
                                             </button>
                                             <connections>
-                                                <segue destination="Aac-pH-5nJ" kind="presentation" id="N3U-1I-coK"/>
+                                                <action selector="questionToHome:" destination="4HE-hA-sUL" id="Dvc-P2-4mQ"/>
+                                                <segue destination="Kiq-2O-vnj" kind="presentation" identifier="questionToHome" id="fzh-sw-WOI"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="tao-UQ-QEX">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JUz-j2-ZK8">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="bde-UU-gVC">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lUx-MX-4ao">
                                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Next"/>
                                                 <connections>
-                                                    <action selector="nextButton:" destination="4HE-hA-sUL" eventType="touchUpInside" id="3bR-ra-YE2"/>
+                                                    <action selector="nextButton:" destination="4HE-hA-sUL" eventType="touchUpInside" id="sjL-as-wnm"/>
                                                 </connections>
                                             </button>
                                             <connections>
-                                                <action selector="nextButton:" destination="4HE-hA-sUL" id="Dtp-Dn-NHL"/>
-                                                <segue destination="XjV-Om-YNY" kind="presentation" identifier="goToAnswer" id="YTZ-DU-wJT"/>
+                                                <action selector="nextButton:" destination="4HE-hA-sUL" id="tSB-ZL-6Vb"/>
+                                                <segue destination="XjV-Om-YNY" kind="presentation" identifier="goToAnswer" id="Dos-56-omz"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -182,12 +186,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7j-ji-6Y8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232.8" y="103.89805097451276"/>
+            <point key="canvasLocation" x="1204" y="104"/>
         </scene>
-        <!--View Controller-->
+        <!--Answer Sceen View Controller-->
         <scene sceneID="j7y-Xe-nyB">
             <objects>
-                <viewController id="XjV-Om-YNY" sceneMemberID="viewController">
+                <viewController id="XjV-Om-YNY" customClass="AnswerSceenViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X9p-B1-Hb6"/>
                         <viewControllerLayoutGuide type="bottom" id="rvx-LD-lb0"/>
@@ -210,31 +214,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aB3-4N-d8V">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="lhB-Bl-I0u">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Eto-oi-JK0">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wxt-aV-CpS">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Back"/>
-                                            </button>
-                                            <connections>
-                                                <segue destination="Aac-pH-5nJ" kind="presentation" id="HCZ-G4-ebA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="hA6-Ce-jII">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xyM-JA-oHE">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Next"/>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tic-vx-4cd">
                                 <frame key="frameInset" minX="4.27%" minY="16.19%" width="91.47%" height="10.79%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -242,18 +221,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aB3-4N-d8V">
+                                <frame key="frameInset" minY="20" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Answer" id="lhB-Bl-I0u">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="SUy-gs-p8Z">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y59-bu-efE">
+                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="answerToHome:" destination="XjV-Om-YNY" eventType="touchUpInside" id="eEU-et-ut4"/>
+                                                </connections>
+                                            </button>
+                                            <connections>
+                                                <segue destination="Kiq-2O-vnj" kind="presentation" identifier="answerToHome" id="oLV-Wq-Rme"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="cYB-C5-bAg">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0bZ-OM-bzo">
+                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Next"/>
+                                                <connections>
+                                                    <action selector="goToQuestionOrResult:" destination="XjV-Om-YNY" eventType="touchUpInside" id="hsr-om-nUM"/>
+                                                </connections>
+                                            </button>
+                                            <connections>
+                                                <action selector="goToQuestionOrResult:" destination="XjV-Om-YNY" id="heb-df-zFp"/>
+                                                <segue destination="4HE-hA-sUL" kind="presentation" identifier="goToNextQuestion" id="9fn-yf-YN1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="Oqg-At-2OW" kind="presentation" identifier="goToResults" id="iP8-SX-T6k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="caC-wo-vam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096.8000000000002" y="103.89805097451276"/>
+            <point key="canvasLocation" x="2172" y="104"/>
         </scene>
-        <!--View Controller-->
+        <!--Results Screen View Controller-->
         <scene sceneID="Hvj-dy-oxu">
             <objects>
-                <viewController id="Oqg-At-2OW" sceneMemberID="viewController">
+                <viewController id="Oqg-At-2OW" customClass="ResultsScreenViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mfF-iB-Rhc"/>
                         <viewControllerLayoutGuide type="bottom" id="n9b-tU-6Tm"/>
@@ -262,31 +279,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-Ah-tjI">
-                                <frame key="frameInset" minY="100.00%" width="100.00%" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="d2I-GG-HCL">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="pZw-50-hjk">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="frT-FT-YT8">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Back"/>
-                                            </button>
-                                            <connections>
-                                                <segue destination="Aac-pH-5nJ" kind="presentation" id="7qn-dK-XgN"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Lt3-VR-TRb">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ooL-xa-tlB">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Next"/>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descriptive Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVz-cY-pLZ">
                                 <frame key="frameInset" minX="4.27%" minY="29.54%" width="91.47%" height="11.84%"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -301,6 +293,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-Ah-tjI">
+                                <frame key="frameInset" minY="3.21%" width="100.00%" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Results" id="d2I-GG-HCL">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="pZw-50-hjk">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="frT-FT-YT8">
+                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="resultsToHome:" destination="Oqg-At-2OW" eventType="touchUpInside" id="uIx-2Y-qop"/>
+                                                </connections>
+                                            </button>
+                                            <connections>
+                                                <action selector="resultsToHome:" destination="Oqg-At-2OW" id="pLz-OW-W5K"/>
+                                                <segue destination="Kiq-2O-vnj" kind="presentation" identifier="resultsToHome" id="gva-fC-YCh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -327,6 +341,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="N3U-1I-coK"/>
+        <segue reference="oLV-Wq-Rme"/>
+        <segue reference="9fn-yf-YN1"/>
     </inferredMetricsTieBreakers>
 </document>

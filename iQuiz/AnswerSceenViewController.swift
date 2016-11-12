@@ -32,4 +32,14 @@ class AnswerSceenViewController: UIViewController {
     }
     */
 
+    @IBAction func goToQuestionOrResult(_ sender: AnyObject) {
+        //if all questions complete
+        performSegue(withIdentifier: "goToResults", sender: self)
+        //if not all questions complete go to next question
+        // performSegue(withIdentifier: "goToNextQuestion", sender: self)
+    }
+    
+    @IBAction func answerToHome(_ sender: AnyObject) {
+        performSegue(withIdentifier: "answerToHome", sender: self)
+    }
 }
