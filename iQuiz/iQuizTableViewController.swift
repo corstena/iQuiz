@@ -16,12 +16,62 @@ class iQuizTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //process JSON file
+        let requestURL: NSURL = NSURL(string: "http://tednewardsandbox.site44.com/questions.json")!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                NSLog("File downloaded successfully.")
+                do{
+                    
+                    let quizJson = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String:Any]
+                    
+                    if let categories = quizJson["categories"] as? [[String: Any]] {
+                        for category in categories {
+                            if let title = category["title"] as? String {
+                               self.questionCategories.append(title)
+                                if let description = category["desc"] as? String {
+                                    self.categoryDescriptions.append(description)
+                                    if let questions = category["questions"] as? [[String: Any]] {
+                                        for question in questions {
+                                            if let text = question["text"] as? String {
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    
+//                    if let categories = quizJson["stations"] as? [[String: AnyObject]] {
+//                        
+//                        for station in stations {
+//                            
+//                            if let name = station["stationName"] as? String {
+//                                
+//                                if let year = station["buildYear"] as? String {
+//                                    print(name,year)
+//                                }
+//                                
+//                            }
+//                        }
+//                        
+//                    }
+//                    
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
