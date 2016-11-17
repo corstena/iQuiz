@@ -23,7 +23,7 @@ class QuestionScreenViewController: UIViewController {
     var correctAnswer = Int()
     var questionText = String()
     var correctAnswerText = String()
-    var totalCorrectAnswers = Int()
+    var totalCorrectAnswers : Int?
     
     @IBAction func selectedAnswer(_ sender: UIButton) {
         clearSelected()

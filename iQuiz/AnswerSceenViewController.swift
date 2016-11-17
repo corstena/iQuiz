@@ -36,7 +36,7 @@ class AnswerSceenViewController: UIViewController {
         }
         totalNumberOfQuestions = jsonData[questionCategory].questions.count
         question.text = questionText
-        answer.text = correctAnswerText
+        answer.text = "Answer: " + correctAnswerText
         // Do any additional setup after loading the view.
     }
 
@@ -57,10 +57,11 @@ class AnswerSceenViewController: UIViewController {
     */
 
     @IBAction func goToQuestionOrResult(_ sender: AnyObject) {
-        //if all questions complete
-        performSegue(withIdentifier: "goToResults", sender: self)
-        //if not all questions complete go to next question
-        // performSegue(withIdentifier: "goToNextQuestion", sender: self)
+        if questionNumber + 1 < totalNumberOfQuestions {
+            performSegue(withIdentifier: "goToNextQuestion", sender: self)
+        } else {
+            performSegue(withIdentifier: "goToResults", sender: self)
+        }
     }
     
     @IBAction func answerToHome(_ sender: AnyObject) {
@@ -68,13 +69,13 @@ class AnswerSceenViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if questionNumber + 1 < totalNumberOfQuestions {
+        if segue.identifier == "goToNextQuestion" {
             let questionScreenViewController = segue.destination as! QuestionScreenViewController
             questionScreenViewController.jsonData = jsonData
             questionScreenViewController.questionNumber = questionNumber + 1
             questionScreenViewController.questionCategory = questionCategory
             questionScreenViewController.totalCorrectAnswers = totalCorrectAnswers
-        } else {
+        } else if segue.identifier == "goToResults" {
             let resultsScreenViewController = segue.destination as! ResultsScreenViewController
             resultsScreenViewController.totalCorrectAnswers = totalCorrectAnswers
             resultsScreenViewController.totalNumberOfQuestions = totalNumberOfQuestions

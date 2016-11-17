@@ -16,8 +16,6 @@ class iQuizTableViewController: UITableViewController {
     var quizJson = [[String:Any]]()
     var questionCategory = Int()
     var jsonData = [quizSection]()
-    var questionNumber = 0
-    var totalCorrectAnswers = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,9 +115,9 @@ class iQuizTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let questionScreenViewController = segue.destination as! QuestionScreenViewController
         questionScreenViewController.jsonData = jsonData
-        questionScreenViewController.questionNumber = questionNumber
+        questionScreenViewController.questionNumber = 0
         questionScreenViewController.questionCategory = questionCategory
-        questionScreenViewController.totalCorrectAnswers = totalCorrectAnswers
+        questionScreenViewController.totalCorrectAnswers = 0
     }
 
 }
