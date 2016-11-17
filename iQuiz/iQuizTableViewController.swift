@@ -16,20 +16,21 @@ class iQuizTableViewController: UITableViewController {
     var quizJson = [[String:Any]]()
     var questionCategory = Int()
     var jsonData = [quizSection]()
+    let defaults = UserDefaults.standard
+    
+    struct defaultsKeys {
+        static let connectionURL = "URL"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadJson()
-        //process JSON file
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -47,8 +48,15 @@ class iQuizTableViewController: UITableViewController {
     }
 
     @IBAction func settingsAlert(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Settings go here", message: "Yay settings!", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        var newURL = String()
+        let alert = UIAlertController(title: "Enter new JSON URL", message: "Please enter valid URL", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = "https://tednewardsandbox.site44.com/questions.json"
+            newURL = textField.text!
+        }
+        self.defaults.setValue(newURL, forKey: defaultsKeys.connectionURL)
+        self.defaults.synchronize()
+        alert.addAction(UIAlertAction(title: "Set URL", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -59,7 +67,15 @@ class iQuizTableViewController: UITableViewController {
     }
     
     func loadJson() {
-        let requestURL: NSURL = NSURL(string: "https://tednewardsandbox.site44.com/questions.json")!
+        if defaults.string(forKey: defaultsKeys.connectionURL) == "" {
+            self.defaults.setValue("https://tednewardsandbox.site44.com/questions.json", forKey: defaultsKeys.connectionURL)
+            self.defaults.synchronize()
+        }
+        //RUN THIS CODE IF A BAD URL IS INPUT AND APP CRASHES
+        self.defaults.setValue("https://tednewardsandbox.site44.com/questions.json", forKey: defaultsKeys.connectionURL)
+        self.defaults.synchronize()
+        NSLog("Connection URL: " + defaults.string(forKey: defaultsKeys.connectionURL)!)
+        let requestURL: NSURL = NSURL(string: defaults.string(forKey: defaultsKeys.connectionURL)!)!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest as URLRequest) {
@@ -107,6 +123,8 @@ class iQuizTableViewController: UITableViewController {
                 } catch {
                     print("Error with Json: \(error)")
                 }
+            } else {
+                //self.jsonData = self.defaults.array(forKey: "offlineData") as! [quizSection]
             }
         }
         task.resume()
