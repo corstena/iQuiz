@@ -263,6 +263,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="answer" destination="b0F-EA-RxJ" id="GbS-6S-NbI"/>
+                        <outlet property="question" destination="bgL-LY-VBc" id="12F-rH-dOj"/>
+                        <outlet property="questionStatus" destination="tic-vx-4cd" id="MqV-qS-eQo"/>
                         <segue destination="Oqg-At-2OW" kind="presentation" identifier="goToResults" id="iP8-SX-T6k"/>
                     </connections>
                 </viewController>
@@ -321,6 +324,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="quizDescriptionLabel" destination="hVz-cY-pLZ" id="lL7-6B-sPt"/>
+                        <outlet property="quizScoreLabel" destination="Biu-KL-lsX" id="l04-Pj-xaw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4B-Lb-ARy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -344,7 +351,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oLV-Wq-Rme"/>
-        <segue reference="PsJ-Nz-hic"/>
+        <segue reference="gva-fC-YCh"/>
+        <segue reference="9fn-yf-YN1"/>
     </inferredMetricsTieBreakers>
 </document>

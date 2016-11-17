@@ -15,6 +15,9 @@ class iQuizTableViewController: UITableViewController {
     var imageList = ["chemistry", "marvel", "math"]
     var quizJson = [[String:Any]]()
     var questionCategory = Int()
+    var jsonData = [quizSection]()
+    var questionNumber = 0
+    var totalCorrectAnswers = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,26 +77,33 @@ class iQuizTableViewController: UITableViewController {
                     let quizJson = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
                     
                     for i in 0 ..< quizJson.count {
+                        let newQuizSection = quizSection()
+                        newQuizSection.rowNumber = i
                         if let title = quizJson[i]["title"] as? String {
                             self.questionCategories.append(title)
+                            newQuizSection.categoryName = title
                         }
                         if let description = quizJson[i]["desc"] as? String {
                             self.categoryDescriptions.append(description)
+                            newQuizSection.categoryDescriptom = description
                         }
                         let questionText = quizJson[i]["questions"] as? [[String: Any]]
                         for question in questionText! {
+                            let newQuestion = Question()
                             if let text = question["text"] as? String {
-                                NSLog(text)
+                                newQuestion.questionText = text
                             }
                             if let correctAnswer = question["answer"] as? String {
-                                NSLog(correctAnswer)
+                                newQuestion.correctAnswer = correctAnswer
                             }
                             if let answers = question["answers"] as? [String] {
                                 for answer in answers {
-                                    NSLog(answer)
+                                    newQuestion.possibleAnswers.append(answer)
                                 }
                             }
+                            newQuizSection.questions.append(newQuestion)
                         }
+                        self.jsonData.append(newQuizSection)
                         self.tableView.reloadData()
                     }
                 } catch {
@@ -106,8 +116,10 @@ class iQuizTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let questionScreenViewController = segue.destination as! QuestionScreenViewController
+        questionScreenViewController.jsonData = jsonData
+        questionScreenViewController.questionNumber = questionNumber
         questionScreenViewController.questionCategory = questionCategory
-        questionScreenViewController.quizJsonData = quizJson
+        questionScreenViewController.totalCorrectAnswers = totalCorrectAnswers
     }
 
 }
