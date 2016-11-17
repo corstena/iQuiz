@@ -12,7 +12,9 @@ class iQuizTableViewController: UITableViewController {
     
     var questionCategories = [String]()
     var categoryDescriptions = [String]()
-    var imageList = ["math", "marvel", "chemistry"]
+    var imageList = ["chemistry", "marvel", "math"]
+    var quizJson = [[String:Any]]()
+    var questionCategory = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,6 @@ class iQuizTableViewController: UITableViewController {
         cell.questionLabel.text = questionCategories[indexPath.row]
         cell.descriptionLabel.text = categoryDescriptions[indexPath.row]
         cell.categoryImage.image = UIImage(named : imageList[indexPath.row])
-        NSLog("DONE WITH STUFF")
         // Configure the cell...
 
         return cell
@@ -52,6 +53,7 @@ class iQuizTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! iQuizTableViewCell
+        questionCategory = indexPath.row
         performSegue(withIdentifier: "goToQuestion", sender: self)
     }
     
@@ -70,22 +72,28 @@ class iQuizTableViewController: UITableViewController {
                 do{
                     
                     let quizJson = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
-                    var counter = 0
                     
-                    
-                    for category in quizJson {
-                        if let title = category["title"] as? String {
+                    for i in 0 ..< quizJson.count {
+                        if let title = quizJson[i]["title"] as? String {
                             self.questionCategories.append(title)
                         }
-                        if let description = category["desc"] as? String {
+                        if let description = quizJson[i]["desc"] as? String {
                             self.categoryDescriptions.append(description)
                         }
-                        if let categoryQuestions = category["quesitons"] as? [String: Any] {
-                            for question in categoryQuestions {
-                                    let text = question["text"]
+                        let questionText = quizJson[i]["questions"] as? [[String: Any]]
+                        for question in questionText! {
+                            if let text = question["text"] as? String {
+                                NSLog(text)
+                            }
+                            if let correctAnswer = question["answer"] as? String {
+                                NSLog(correctAnswer)
+                            }
+                            if let answers = question["answers"] as? [String] {
+                                for answer in answers {
+                                    NSLog(answer)
+                                }
                             }
                         }
-                        counter += 1
                         self.tableView.reloadData()
                     }
                 } catch {
@@ -94,6 +102,12 @@ class iQuizTableViewController: UITableViewController {
             }
         }
         task.resume()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let questionScreenViewController = segue.destination as! QuestionScreenViewController
+        questionScreenViewController.questionCategory = questionCategory
+        questionScreenViewController.quizJsonData = quizJson
     }
 
 }

@@ -15,7 +15,10 @@ class QuestionScreenViewController: UIViewController {
     @IBOutlet weak var option3: UIButton!
     @IBOutlet weak var option4: UIButton!
     var answerSelected = false
-
+    var quizJsonData = [[String:Any]]()
+    var questionCategory = Int()
+    @IBOutlet weak var questionLabel: UILabel!
+    
     @IBAction func selectedAnswer(_ sender: UIButton) {
         clearSelected()
         sender.backgroundColor = UIColor.green
@@ -26,6 +29,23 @@ class QuestionScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         answerSelected = false
+        NSLog("JSON COUNT SIZE:" + String(quizJsonData.count))
+        for i in 0 ..< quizJsonData.count {
+            if i == questionCategory {
+                let questionText = quizJsonData[i]["questions"] as? [[String: Any]]
+                for question in questionText! {
+                    if let text = question["text"] as? String {
+                        questionLabel.text = text
+                    }
+                    if let answers = question["answers"] as? [String] {
+                        option1.setTitle(answers[0], for: UIControlState.normal)
+                        option2.setTitle(answers[1], for: UIControlState.normal)
+                        option3.setTitle(answers[2], for: UIControlState.normal)
+                        option4.setTitle(answers[3], for: UIControlState.normal)
+                    }
+                }
+            }
+        }
         // Do any additional setup after loading the view.
     }
 
