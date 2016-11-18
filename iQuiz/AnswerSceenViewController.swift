@@ -79,7 +79,8 @@ class AnswerSceenViewController: UIViewController {
             let resultsScreenViewController = segue.destination as! ResultsScreenViewController
             resultsScreenViewController.totalCorrectAnswers = totalCorrectAnswers
             resultsScreenViewController.totalNumberOfQuestions = totalNumberOfQuestions
+        } else if segue.identifier == "answerToHome" {
+            let homeScreenViewController = segue.destination as! UINavigationController
         }
-        
     }
 }

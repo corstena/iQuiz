@@ -18,6 +18,7 @@ class iQuizTableViewController: UITableViewController {
     var jsonData = [quizSection]()
     let defaults = UserDefaults.standard
     
+    
     struct defaultsKeys {
         static let connectionURL = "URL"
     }
@@ -67,14 +68,16 @@ class iQuizTableViewController: UITableViewController {
     }
     
     func loadJson() {
-        if defaults.string(forKey: defaultsKeys.connectionURL) == "" {
+        if defaults.string(forKey: defaultsKeys.connectionURL) == nil {
             self.defaults.setValue("https://tednewardsandbox.site44.com/questions.json", forKey: defaultsKeys.connectionURL)
             self.defaults.synchronize()
         }
         //RUN THIS CODE IF A BAD URL IS INPUT AND APP CRASHES
-        self.defaults.setValue("https://tednewardsandbox.site44.com/questions.json", forKey: defaultsKeys.connectionURL)
-        self.defaults.synchronize()
-        NSLog("Connection URL: " + defaults.string(forKey: defaultsKeys.connectionURL)!)
+        //self.defaults.setValue("https://tednewardsandbox.site44.com/questions.json", forKey: defaultsKeys.connectionURL)
+        //self.defaults.synchronize()
+        if defaults.string(forKey: defaultsKeys.connectionURL)! != nil {
+            NSLog("Connection URL: " + defaults.string(forKey: defaultsKeys.connectionURL)!)
+        }
         let requestURL: NSURL = NSURL(string: defaults.string(forKey: defaultsKeys.connectionURL)!)!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         let session = URLSession.shared
@@ -83,51 +86,61 @@ class iQuizTableViewController: UITableViewController {
             
             let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
+            let path = Bundle.main.path(forResource: "datafile", ofType: "txt")!
+            var quizJson = [[String:Any]]()
             
             if (statusCode == 200) {
                 NSLog("File downloaded successfully.")
                 do{
+                    quizJson = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
+                    NSData(data: data!).write(toFile: path, atomically: true)
                     
-                    let quizJson = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
-                    
-                    for i in 0 ..< quizJson.count {
-                        let newQuizSection = quizSection()
-                        newQuizSection.rowNumber = i
-                        if let title = quizJson[i]["title"] as? String {
-                            self.questionCategories.append(title)
-                            newQuizSection.categoryName = title
-                        }
-                        if let description = quizJson[i]["desc"] as? String {
-                            self.categoryDescriptions.append(description)
-                            newQuizSection.categoryDescriptom = description
-                        }
-                        let questionText = quizJson[i]["questions"] as? [[String: Any]]
-                        for question in questionText! {
-                            let newQuestion = Question()
-                            if let text = question["text"] as? String {
-                                newQuestion.questionText = text
-                            }
-                            if let correctAnswer = question["answer"] as? String {
-                                newQuestion.correctAnswer = correctAnswer
-                            }
-                            if let answers = question["answers"] as? [String] {
-                                for answer in answers {
-                                    newQuestion.possibleAnswers.append(answer)
-                                }
-                            }
-                            newQuizSection.questions.append(newQuestion)
-                        }
-                        self.jsonData.append(newQuizSection)
-                        self.tableView.reloadData()
-                    }
+                                    } catch {
+                    print("Error with Json: \(error)")
+                }
+            } else { //load local data
+                do {
+                    var content = NSData(contentsOfFile: path)
+                    quizJson = try JSONSerialization.jsonObject(with: content! as Data, options: []) as! [[String:Any]]
                 } catch {
                     print("Error with Json: \(error)")
                 }
-            } else {
-                //self.jsonData = self.defaults.array(forKey: "offlineData") as! [quizSection]
+                
             }
+            for i in 0 ..< quizJson.count {
+                let newQuizSection = quizSection()
+                newQuizSection.rowNumber = i
+                if let title = quizJson[i]["title"] as? String {
+                    self.questionCategories.append(title)
+                    newQuizSection.categoryName = title
+                }
+                if let description = quizJson[i]["desc"] as? String {
+                    self.categoryDescriptions.append(description)
+                    newQuizSection.categoryDescriptom = description
+                }
+                let questionText = quizJson[i]["questions"] as? [[String: Any]]
+                for question in questionText! {
+                    let newQuestion = Question()
+                    if let text = question["text"] as? String {
+                        newQuestion.questionText = text
+                    }
+                    if let correctAnswer = question["answer"] as? String {
+                        newQuestion.correctAnswer = correctAnswer
+                    }
+                    if let answers = question["answers"] as? [String] {
+                        for answer in answers {
+                            newQuestion.possibleAnswers.append(answer)
+                        }
+                    }
+                    newQuizSection.questions.append(newQuestion)
+                }
+                self.jsonData.append(newQuizSection)
+                self.tableView.reloadData()
+            }
+
         }
         task.resume()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

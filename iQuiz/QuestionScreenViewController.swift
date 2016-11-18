@@ -100,13 +100,17 @@ class QuestionScreenViewController: UIViewController {
     }
     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let answerScreenViewController = segue.destination as! AnswerSceenViewController
-        answerScreenViewController.jsonData = jsonData
-        answerScreenViewController.questionNumber = questionNumber
-        answerScreenViewController.questionCategory = questionCategory
-        answerScreenViewController.selectedAnswer = selectedAnswer
-        answerScreenViewController.correctAnswer = correctAnswer
-        answerScreenViewController.questionText = questionText
-        answerScreenViewController.correctAnswerText = correctAnswerText
+        if segue.identifier == "goToAnswer" {
+            let answerScreenViewController = segue.destination as! AnswerSceenViewController
+            answerScreenViewController.jsonData = jsonData
+            answerScreenViewController.questionNumber = questionNumber
+            answerScreenViewController.questionCategory = questionCategory
+            answerScreenViewController.selectedAnswer = selectedAnswer
+            answerScreenViewController.correctAnswer = correctAnswer
+            answerScreenViewController.questionText = questionText
+            answerScreenViewController.correctAnswerText = correctAnswerText
+        } else if segue.identifier == "questionToHome" {
+            let homeScreenViewController = segue.destination as! UINavigationController
+        }
     }
 }

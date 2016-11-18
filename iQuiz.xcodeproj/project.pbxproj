@@ -21,6 +21,7 @@
 		9DA144821DCD59D700E2FA70 /* iQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA144811DCD59D700E2FA70 /* iQuizUITests.swift */; };
 		9DA144901DCD5A7F00E2FA70 /* iQuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA1448F1DCD5A7F00E2FA70 /* iQuizTableViewController.swift */; };
 		9DA144921DCD5AD200E2FA70 /* iQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA144911DCD5AD200E2FA70 /* iQuizTableViewCell.swift */; };
+		9DA582121DDE8130000E81F5 /* datafile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DA582111DDE8130000E81F5 /* datafile.txt */; };
 		9DB6D6821DDD35A3003C9DBF /* quizSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6D6811DDD35A3003C9DBF /* quizSection.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		9DA144831DCD59D700E2FA70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DA1448F1DCD5A7F00E2FA70 /* iQuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iQuizTableViewController.swift; sourceTree = "<group>"; };
 		9DA144911DCD5AD200E2FA70 /* iQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iQuizTableViewCell.swift; sourceTree = "<group>"; };
+		9DA582111DDE8130000E81F5 /* datafile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = datafile.txt; sourceTree = "<group>"; };
 		9DB6D6811DDD35A3003C9DBF /* quizSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 		9DA144601DCD59D600E2FA70 /* iQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				9DA582111DDE8130000E81F5 /* datafile.txt */,
 				9DA144611DCD59D600E2FA70 /* AppDelegate.swift */,
 				9DA144651DCD59D600E2FA70 /* Main.storyboard */,
 				9D96ADC91DCD5EC10067CBF1 /* chemistry.jpg */,
@@ -256,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DA582121DDE8130000E81F5 /* datafile.txt in Resources */,
 				9D96ADCC1DCD5EC10067CBF1 /* chemistry.jpg in Resources */,
 				9D96ADCD1DCD5EC10067CBF1 /* marvel.png in Resources */,
 				9DA1446C1DCD59D600E2FA70 /* LaunchScreen.storyboard in Resources */,
